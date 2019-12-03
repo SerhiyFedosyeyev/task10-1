@@ -1,5 +1,11 @@
 plugins {
     id 'java'
+    id "com.github.sherter.google-java-format" version "0.8"
+}
+apply plugin: 'com.github.sherter.google-java-format'    // Apply it
+
+googleJavaFormat {
+    options style: 'AOSP'   // Configure plugin
 }
 
 group 'com/qacourses/task8'
@@ -14,4 +20,7 @@ repositories {
 dependencies {
     compile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.8'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
 }
