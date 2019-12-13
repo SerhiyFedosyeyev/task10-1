@@ -1,14 +1,16 @@
 package com.qa.pageobject.base;
 
-import java.util.Collections;
-import java.util.concurrent.TimeUnit;
+import com.qa.pageobject.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.qa.pageobject.pages.HomePage;
+
+import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     private WebDriver driver;
@@ -34,6 +36,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         // Explicit Wait
         wait = new WebDriverWait(driver, 10);
+
     }
 
     /**
@@ -70,4 +73,10 @@ public class BaseTest {
     public WebDriver getDriver() {
         return driver;
     }
+    public void moveToElement(WebElement element){
+        Actions action = new Actions(getDriver());
+        action.moveToElement(element).perform();
+
+    }
+
 }

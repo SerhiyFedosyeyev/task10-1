@@ -3,8 +3,11 @@ package com.qa.pageobject.pages;
 import com.qa.pageobject.base.BaseTest;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.ArrayList;
 
 public abstract class AbstractPage {
 
@@ -53,8 +56,31 @@ public abstract class AbstractPage {
         return new HomePage(basetest);
     }
 
-    /** User name validation */
+    /**
+     * User name validation
+     */
     public void validateUserName() {
         Assert.assertEquals("Different User names ", USERNAME, userName.getText());
     }
-}
+
+    public void moveToElement(WebElement element){
+        Actions actions = new Actions(basetest.getDriver());
+        actions.moveToElement(element).perform();
+    }
+
+    public void openInNewTab(){
+        String mainWindow= basetest.getDriver().getWindowHandle()
+
+        ArrayList<String> tabs = new ArrayList<String> (basetest.getDriver().getWindowHandles());
+        basetest.getDriver().switchTo().window(tabs.get(1)); //switches to new tab
+        basetest.getDriver().get("https://www.facebook.com");
+
+        basetest.getDriver().switchTo().window(tabs.get(0)); // switch back to main screen
+        basetest.getDriver().get("https://www.news.google.com");
+    }
+
+
+
+
+    }
+

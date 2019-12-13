@@ -1,12 +1,12 @@
 package com.qa.pageobject.tests;
 
 import com.qa.pageobject.base.BaseTest;
-import org.junit.Test;
 import com.qa.pageobject.pages.HomePage;
 import com.qa.pageobject.pages.LoginPage;
 import com.qa.pageobject.pages.MyAccountPage;
+import org.junit.Test;
 
-public class Tests extends BaseTest {
+public class OpenSite extends BaseTest {
     @Test
     public void openLoginPage() {
         HomePage homePage = openSite();
@@ -15,8 +15,9 @@ public class Tests extends BaseTest {
         loginPage.setPassword();
         MyAccountPage accountPage = loginPage.clickSignInButton();
         accountPage.validateUserName();
+        accountPage.openDresses();
+        accountPage.checkBreadcrumpPresense();
         homePage = accountPage.logOut();
-
 
         closeSite();
     }
